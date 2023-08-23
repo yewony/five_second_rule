@@ -21,6 +21,11 @@ const words = [
 const timerElement = document.getElementById('timer');
 const wordElement = document.getElementById('word');
 const passButton = document.getElementById('passButton');
+const startStopButton = document.getElementById('startStopButton');
+
+let interval; // Declare the interval variable globally
+let isRunning = false; // Variable to track if the timer is running
+let isFirstStart = true; // Variable to track if it's the first start
 
 let currentIndex = 0;
 let countdown = 5;
@@ -28,8 +33,6 @@ let countdown = 5;
 function updateWord() {
     wordElement.textContent = words[currentIndex];
 }
-
-let interval; // Declare the interval variable globally
 
 function startTimer() {
     countdown = 5;
@@ -61,5 +64,28 @@ passButton.addEventListener('click', () => {
     startTimer();
 });
 
-updateWord();
-startTimer();
+function toggleStartStop() {
+    if (!isRunning && isFirstStart) {
+        console.log('Display the word for the first start. isRunning: ', isRunning);
+        updateWord(); // Display the word for the first start
+        isFirstStart = false;
+    }
+
+    if (isRunning) {
+        console.log('isRunning: ', isRunning);
+        clearInterval(interval); // Clear the interval if it's running
+        wordElement.textContent = 'Word Here';
+        timerElement.textContent = 5;
+        document.getElementById('timer').classList.toggle('blinking');
+        startStopButton.textContent = 'Start';
+    } else {
+        console.log('isRunning: ', isRunning);
+        updateWord();
+        startTimer();
+        document.getElementById('timer').classList.toggle('blinking');
+        startStopButton.textContent = 'Stop';
+    }
+    isRunning = !isRunning;
+}
+
+startStopButton.addEventListener('click', toggleStartStop);
