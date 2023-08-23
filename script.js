@@ -16,45 +16,50 @@ const words = [
     "외국 요리", "건축 양식", "공항 물건", "휴일", "전쟁",
     "유명 지명", "정치인", "유명화가", "유명 시인", "유명 소설",
     "예능 프로그램", "드라마", "애니메이션", "음식 종류", "문구 제품"
-  ];
-  
-  const timerElement = document.getElementById('timer');
-  const wordElement = document.getElementById('word');
-  const passButton = document.getElementById('passButton');
-  
-  let currentIndex = 0;
-  let countdown = 5;
-  
-  function updateWord() {
+];
+
+const timerElement = document.getElementById('timer');
+const wordElement = document.getElementById('word');
+const passButton = document.getElementById('passButton');
+
+let currentIndex = 0;
+let countdown = 5;
+
+function updateWord() {
     wordElement.textContent = words[currentIndex];
-  }
-  
-  function startTimer() {
+}
+
+let interval; // Declare the interval variable globally
+
+function startTimer() {
     countdown = 5;
     updateTimer();
-  
-    const interval = setInterval(() => {
-      countdown--;
-      updateTimer();
-  
-      if (countdown === 0) {
-        clearInterval(interval);
-        currentIndex = (currentIndex + 1) % words.length;
-        updateWord();
-        startTimer();
-      }
+
+    clearInterval(interval); // Clear the existing interval
+
+    interval = setInterval(() => {
+        countdown--;
+        updateTimer();
+
+        if (countdown === 0) {
+            clearInterval(interval);
+            currentIndex = (currentIndex + 1) % words.length;
+            updateWord();
+            startTimer();
+        }
     }, 1000);
-  }
-  
-  function updateTimer() {
+}
+function updateTimer() {
     timerElement.textContent = countdown;
-  }
-  
-  passButton.addEventListener('click', () => {
+}
+
+
+passButton.addEventListener('click', () => {
     currentIndex = (currentIndex + 1) % words.length;
     updateWord();
+    clearInterval(interval); // Clear the existing interval
     startTimer();
-  });
-  
-  updateWord();
-  startTimer();
+});
+
+updateWord();
+startTimer();
