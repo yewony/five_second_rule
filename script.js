@@ -72,14 +72,12 @@ function toggleStartStop() {
     }
 
     if (isRunning) {
-        console.log('isRunning: ', isRunning);
         clearInterval(interval); // Clear the interval if it's running
         wordElement.textContent = 'Word Here';
         timerElement.textContent = 5;
         document.getElementById('timer').classList.toggle('blinking');
         startStopButton.textContent = 'Start';
     } else {
-        console.log('isRunning: ', isRunning);
         updateWord();
         startTimer();
         document.getElementById('timer').classList.toggle('blinking');
