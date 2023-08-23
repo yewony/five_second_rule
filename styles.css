@@ -1,37 +1,84 @@
 body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+}
+
+.game-container {
+  text-align: center;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.timer {
+  color: #ff0084;
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.word {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.pass-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.start-stop-button {
+  background-color: #d70c0c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.blinking {
+  -webkit-animation: blink 0.5s ease-in-out infinite alternate;
+  -moz-animation: blink 0.5s ease-in-out infinite alternate;
+  animation: blink 0.5s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes blink {
+  0% {
+    opacity: 0;
   }
-  
-  .game-container {
-    text-align: center;
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+  100% {
+    opacity: 1;
   }
-  
-  .timer {
-    font-size: 36px;
-    margin-bottom: 10px;
+}
+
+@-moz-keyframes blink {
+  0% {
+    opacity: 0;
   }
-  
-  .word {
-    font-size: 24px;
-    margin-bottom: 20px;
+
+  100% {
+    opacity: 1;
   }
-  
-  .pass-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
   }
+
+  100% {
+    opacity: 1;
+  }
+}
